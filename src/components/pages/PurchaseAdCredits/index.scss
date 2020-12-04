@@ -1,0 +1,132 @@
+.purchasepage {
+  &__container {
+    margin-top: 2rem;
+  }
+  &__header {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  &__form {
+    width: 35rem;
+    max-width: 90%;
+    margin: 2rem auto;
+    &-label {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      &:not(:first-child) {
+        margin-top: 1rem;
+      }
+    }
+    &-textfield {
+      border-radius: 4px;
+      width: 100%;
+      font-family: inherit;
+      padding: 0.5rem 0.7rem;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      &:focus {
+        outline: none;
+      }
+    }
+    &-prices {
+      margin-top: 2rem;
+      height: 13rem;
+      display: flex;
+      justify-content: space-between;
+      &-box {
+        background-color: #598bff;
+        box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+        width: 31.5%;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+        opacity: 0.8;
+        &-icon {
+          display: block;
+          font-size: 2.6rem;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        &-product {
+          font-size: 1.2rem;
+          margin-bottom: 2rem;
+        }
+        &-oldprice {
+          text-decoration: line-through;
+          font-size: 1.1rem;
+          margin-bottom: 0.25rem;
+        }
+        &-price {
+          font-size: 1.3rem;
+        }
+        &-active {
+          opacity: 1;
+          transform: translateY(2px) scale(1.05);
+        }
+      }
+    }
+    &-btn {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 19rem;
+      border: 1px solid #ccc;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+      background-color: rgba(31, 87, 219, 0.855);
+      color: #fff;
+      cursor: pointer;
+      margin: 0 auto;
+      margin-top: 2rem;
+      height: 2.6rem;
+      font-family: inherit;
+      border-radius: 4px;
+      font-size: 1.3rem;
+      &-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+  &__popup {
+    &-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 9999;
+      backdrop-filter: blur(2px);
+    }
+    &-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1.5rem 1.3rem;
+      background-color: #ccdbfd;
+      border-radius: 5px;
+      line-height: 1.7rem;
+      font-size: 1.2rem;
+      box-shadow: -1px 6px 10px rgba(0, 0, 0, 0.2);
+    }
+    &-link {
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      border: none;
+      display: block;
+      margin: 0 auto;
+      margin-top: 1rem;
+      width: fit-content;
+      padding: 0.4rem 1.3rem;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+      background-color: rgba(31, 87, 219, 0.855);
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}

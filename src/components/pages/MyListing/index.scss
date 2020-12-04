@@ -1,0 +1,13 @@
+.mylisting {
+  &__container {
+    margin-top: 2rem;
+    padding: 0 1.5rem;
+  }
+  &__header {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  &__listings {
+    margin-top: 2rem;
+  }
+}
