@@ -15,24 +15,18 @@ class index extends Component {
       password: "",
       phone: "",
       hide: false,
-      working: false,
-      //0- login 1-sign up
+      working: false, //0- login 1-sign up
     };
   }
   handleFormChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    this.setState({ [e.target.name]: e.target.value });
   };
   toggleShowing = () => {
     if (!this.state.working)
-      this.setState({
-        showing: this.state.showing === 0 ? 1 : 0,
-      });
+      this.setState({ showing: this.state.showing === 0 ? 1 : 0 });
   };
   signIn = () => {
     let { name, email, phone, password } = this.state;
-    console.log(name);
     if (name === "" || email === "" || phone === "" || password === "") return;
     this.setState({ working: true });
     Axios.post(ApiRoutes + "user/add_user", { name, email, phone, password })
@@ -50,22 +44,16 @@ class index extends Component {
             adCredits: 0,
           });
           this.setState({ hide: true });
-        } else console.log(res.data);
+        }
       })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      .catch((e) => {});
   };
   login = () => {
     let { email, password } = this.state;
     if (email === "" || password === "") return;
     this.setState({ working: true });
-    Axios.post(ApiRoutes + "user/login", {
-      email,
-      password,
-    })
+    Axios.post(ApiRoutes + "user/login", { email, password })
       .then((res) => {
-        console.log(res.data);
         if (res.status === 200) {
           sessionStorage.setItem("token", res.data.token);
           this.props.login({
@@ -81,9 +69,7 @@ class index extends Component {
           this.setState({ hide: true });
         }
       })
-      .catch((e) => {
-        console.log(e.response);
-      });
+      .catch((e) => {});
   };
   render() {
     if (this.state.hide) {
@@ -192,15 +178,12 @@ class index extends Component {
           <button className="signup__contents-loginbtn" onClick={this.signIn}>
             {this.state.working ? "Signing Up" : "Sign Up"}
           </button>
-        </div>
+        </div>{" "}
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {};
-};
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ login }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(index);
+export default connect(null, mapDispatchToProps)(index);

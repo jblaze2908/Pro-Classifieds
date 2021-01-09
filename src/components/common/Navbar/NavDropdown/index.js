@@ -8,9 +8,7 @@ import "./index.scss";
 class index extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      logoutConfirmation: false,
-    };
+    this.state = { logoutConfirmation: false };
   }
   logout = () => {
     this.props.logout();
@@ -82,15 +80,7 @@ class index extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {};
-};
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    {
-      logout,
-    },
-    dispatch
-  );
+  return bindActionCreators({ logout }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(index);
+export default connect(null, mapDispatchToProps)(index);

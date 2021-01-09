@@ -44,33 +44,24 @@ class index extends Component {
     }
     Axios.post(
       ApiRoutes + "payment/rzp/create_order",
-      {
-        amount: amt,
-      },
-      {
-        headers: {
-          authorization: this.props.userInfo.token,
-        },
-      }
+      { amount: amt },
+      { headers: { authorization: this.props.userInfo.token } }
     ).then((res) => {
-      console.log(amt);
       const options = {
-        key: RazorpayKey, // Enter the Key ID generated from the Dashboard
-        amount: amt * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        key: RazorpayKey,
+        amount: amt * 100,
         currency: "INR",
         name: "",
         description: "Test Transaction",
         image: "https://example.com/your_logo",
-        order_id: res.data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        order_id: res.data.order_id,
         handler: this.handlePaymentSuccess,
         prefill: {
           name: this.props.userInfo.name,
           email: this.props.userInfo.email,
           contact: this.props.userInfo.phone,
         },
-        theme: {
-          color: "#598bff",
-        },
+        theme: { color: "#598bff" },
       };
       var rzp1 = new window.Razorpay(options);
       rzp1.on("payment.failed", function (response) {
@@ -83,26 +74,19 @@ class index extends Component {
         alert(response.error.metadata.payment_id);
       });
       rzp1.open();
-      console.log(res.data);
     });
   };
   handlePaymentSuccess = (response) => {
     Axios.post(ApiRoutes + "payment/rzp/verify_signature", response, {
-      headers: {
-        authorization: this.props.userInfo.token,
-      },
+      headers: { authorization: this.props.userInfo.token },
     }).then((res) => {
       if (res.status === 200) {
         this.setState({ paymentSuccess: true });
-        this.props.updateProfile({
-          adCredits: res.data.adCredits,
-        });
+        this.props.updateProfile({ adCredits: res.data.adCredits });
       }
     });
   };
-  handlePaymentFailure = (response) => {
-    console.log(response);
-  };
+  handlePaymentFailure = (response) => {};
   render() {
     return (
       <div className="purchasepage__container">
@@ -242,9 +226,7 @@ class index extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {
-    userInfo: state.userInfo,
-  };
+  return { userInfo: state.userInfo };
 };
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ updateProfile }, dispatch);

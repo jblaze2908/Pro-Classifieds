@@ -1,5 +1,6 @@
 .productcard {
   &__container {
+    position: relative;
     margin: 1rem;
     display: block;
     width: 18rem;
@@ -45,4 +46,76 @@
     font-size: 0.9rem;
     color: #777;
   }
+  &__overlay {
+    &-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(1px);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    width: 70%;
+    opacity: 0.8;
+  }
+}
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  content: "";
+  display: block;
+  border: 5px solid rgba(74, 95, 191, 0.6);
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 15px 0;
+  background: rgba(74, 95, 191, 1);
+  background: linear-gradient(
+    135deg,
+    rgba(146, 160, 221, 1) 0%,
+    rgba(74, 95, 191, 1) 81%,
+    rgba(74, 95, 191, 1) 82%,
+    rgba(74, 95, 191, 1) 100%
+  );
+
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font: 700 16px/1 inherit;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  white-space: pre;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.ribbon-top-left::before {
+  top: 0;
+  right: 0;
+}
+.ribbon-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
 }

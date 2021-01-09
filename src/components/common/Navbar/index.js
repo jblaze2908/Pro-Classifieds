@@ -9,44 +9,20 @@ import NavDropdown from "./NavDropdown";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { change_category } from "../../../actions/homepageDisplay";
 let categoryOptions = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Fashion",
-    value: "fashion",
-  },
-  {
-    label: "Vehicle",
-    value: "vehicle",
-  },
-  {
-    label: "Furniture",
-    value: "furniture",
-  },
-  {
-    label: "Electronics",
-    value: "electronics",
-  },
-  {
-    label: "Mobiles",
-    value: "mobiles",
-  },
-  {
-    label: "Books/Sports",
-    value: "books/sports",
-  },
-  {
-    label: "Services",
-    value: "services",
-  },
+  { label: "All", value: "all" },
+  { label: "Fashion", value: "fashion" },
+  { label: "Vehicle", value: "vehicle" },
+  { label: "Furniture", value: "furniture" },
+  { label: "Electronics", value: "electronics" },
+  { label: "Mobiles", value: "mobiles" },
+  { label: "Books/Sports", value: "books/sports" },
+  { label: "Services", value: "services" },
 ];
 class index extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loginModalShow: false,
       navdropdown_open: false,
@@ -76,9 +52,7 @@ class index extends Component {
     }
   };
   getAddress = async (position) => {
-    console.log(position);
     const { latitude, longitude } = position.coords;
-    console.log(latitude);
     const key = "QxJyC3fKLZuz0JjJPhGiKqvw0ebnbB8C";
     let response = await Axios.get(
       "http://open.mapquestapi.com/geocoding/v1/reverse?key=" +
@@ -90,21 +64,12 @@ class index extends Component {
         "&includeRoadMetadata=true&includeNearestIntersection=true"
     );
     const address = response.data.results[0].locations[0].adminArea5;
-    this.setState({
-      locationValue: {
-        label: address,
-        value: address,
-      },
-    });
-    console.log(address);
+    this.setState({ locationValue: { label: address, value: address } });
   };
   toggleLoginModal = () => {
-    this.setState({
-      loginModalShow: !this.state.loginModalShow,
-    });
+    this.setState({ loginModalShow: !this.state.loginModalShow });
   };
   render() {
-    console.log(this.props);
     return (
       <div className="navbar__container">
         <Link to="/" className="navbar__brand-container">
@@ -119,22 +84,10 @@ class index extends Component {
                 placeholder="Select Location..."
                 onChange={this.changeLocation}
                 options={[
-                  {
-                    label: "Get Current Location",
-                    value: "getCurLoc",
-                  },
-                  {
-                    label: "Delhi",
-                    value: "Delhi",
-                  },
-                  {
-                    label: "Mumbai",
-                    value: "Mumbai",
-                  },
-                  {
-                    label: "Kolkata",
-                    value: "Kolkata",
-                  },
+                  { label: "Get Current Location", value: "getCurLoc" },
+                  { label: "Delhi", value: "Delhi" },
+                  { label: "Mumbai", value: "Mumbai" },
+                  { label: "Kolkata", value: "Kolkata" },
                 ]}
                 value={this.state.locationValue}
               ></Select>
@@ -145,7 +98,7 @@ class index extends Component {
                 options={categoryOptions}
                 placeholder="Select Category"
                 onChange={(e) => {
-                  this.setState({ category: e.value });
+                  this.props.change_category(e.value);
                 }}
               />
             </div>
@@ -161,7 +114,8 @@ class index extends Component {
                 !this.props.userInfo.token ? this.toggleLoginModal : null
               }
             >
-              Login
+              {" "}
+              Login{" "}
             </button>
           ) : (
             <div
@@ -194,11 +148,9 @@ class index extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {
-    userInfo: state.userInfo,
-  };
+  return { userInfo: state.userInfo };
 };
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ change_category }, dispatch);
 };
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index));

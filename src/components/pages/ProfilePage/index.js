@@ -23,15 +23,16 @@ class index extends Component {
   };
   getCitiesFirstLoad = () => {
     if (this.props.userInfo.state) {
-      if (this.props.userInfo.state && !this.state.selectedCity)
+      if (this.props.userInfo.state && !this.state.selectedCity) {
         this.getCitiesByState(
           this.props.userInfo.state,
           this.props.userInfo.city
         );
-      else this.getCitiesByState(this.props.userInfo.state);
+      } else {
+        this.getCitiesByState(this.props.userInfo.state);
+      }
     } else {
       if (sessionStorage.getItem("token")) {
-        console.log("running");
         setTimeout(this.getCitiesFirstLoad, 1000);
         return;
       }
@@ -43,7 +44,6 @@ class index extends Component {
         this.setState({
           cityOptions: [...res.data.citiesByState],
           selectedState: state,
-          selectedCity: "",
         });
       else
         this.setState({
@@ -69,17 +69,10 @@ class index extends Component {
     Axios.post(
       ApiRoutes + "user/update_profile",
       { city: selectedCity, state: selectedState },
-      {
-        headers: {
-          authorization: this.props.userInfo.token,
-        },
-      }
+      { headers: { authorization: this.props.userInfo.token } }
     ).then((res) => {
       if (res.status === 200)
-        this.props.updateProfile({
-          city: selectedCity,
-          state: selectedState,
-        });
+        this.props.updateProfile({ city: selectedCity, state: selectedState });
     });
   };
   render() {
@@ -163,9 +156,7 @@ class index extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {
-    userInfo: state.userInfo,
-  };
+  return { userInfo: state.userInfo };
 };
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ updateProfile }, dispatch);

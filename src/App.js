@@ -9,6 +9,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import PostListing from "./components/pages/PostListing";
 import MyListing from "./components/pages/MyListing";
 import PurchaseAdCredits from "./components/pages/PurchaseAdCredits";
+import ChatsPage from "./components/pages/ChatsPage";
 import Axios from "axios";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -65,6 +66,7 @@ class App extends Component {
           <ProtectedRoute path="/profile" component={ProfilePage} />
           <ProtectedRoute path="/my_listings" component={MyListing} />
           <ProtectedRoute path="/product/add_new" component={PostListing} />
+          <ProtectedRoute path="/chats/:product_id" component={ChatsPage} />
           <Route path="/product/:id" component={ProductPage} />
           <ProtectedRoute
             path="/adcredits/purchase"

@@ -1,0 +1,163 @@
+.chatbox {
+  &__container {
+    width: 80%;
+    margin: 2rem auto;
+    height: calc(100vh - 4rem - 62px);
+    display: flex;
+    box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.4);
+    background-color: #f6f9fd;
+    border-radius: 7px;
+  }
+  &__left {
+    width: 23rem;
+    background-color: #e4ecfa;
+    border-radius: 7px 0 0 7px;
+    border-right: 1px solid #eee;
+    box-shadow: 2px 0px 3.5px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    &-lists {
+      &-list {
+        box-shadow: 2px 0px 3.5px rgba(0, 0, 0, 0.2);
+        border-radius: 30px;
+        background-color: #edf2fb;
+        overflow: hidden;
+        max-height: 60px;
+        transition: all 0.5s;
+        margin-bottom: 1rem;
+        &-open {
+          max-height: 18rem;
+        }
+        &-name {
+          cursor: pointer;
+          padding: 1rem 2rem;
+          font-size: 1.3rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &-icon {
+            font-size: 1.7rem;
+            transition: all 0.3s;
+            perspective: 10rem;
+          }
+        }
+        &-content {
+          padding: 0 1.5rem;
+          padding-bottom: 1rem;
+          &-chat {
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            padding-left: 0.5rem;
+            cursor: pointer;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+  &__right {
+    width: calc(100% - 23rem);
+    &-chatheader {
+      display: flex;
+      padding-left: 1rem;
+      align-items: center;
+      font-size: 1.2rem;
+      height: 2.8rem;
+      box-shadow: 2px 2px 3.5px rgba(0, 0, 0, 0.2);
+      border-radius: 0 7px 0 0;
+      background-color: #dce5fa;
+      color: #1f57dbda;
+    }
+    &-messages {
+      &-container {
+        background-color: #edf2fb;
+        height: calc(100% - 5.6rem);
+        box-shadow: inset 2px 1px 3.5px rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        font-size: 1.15rem;
+        overflow-y: auto;
+      }
+      &-sent {
+        &-container {
+          margin-bottom: 1rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+        &-time {
+          font-size: 0.85rem;
+          margin-right: 0.25rem;
+          margin-top: 0.2rem;
+        }
+        background-color: #1f57dbda;
+        color: #fff;
+        box-shadow: 2px 2px 3.5px rgba(0, 0, 0, 0.2);
+        max-width: 50%;
+        width: fit-content;
+        min-width: 10rem;
+        padding: 1rem;
+        border-radius: 14px 14px 0 14px;
+      }
+      &-received {
+        &-container {
+          margin-bottom: 1rem;
+        }
+        &-time {
+          font-size: 0.85rem;
+          margin-left: 0.25rem;
+          margin-top: 0.2rem;
+        }
+        background-color: #b1c8fdda;
+        box-shadow: 2px 2px 3.5px rgba(0, 0, 0, 0.2);
+        min-width: 10rem;
+        max-width: 50%;
+        width: fit-content;
+        padding: 1rem;
+        border-radius: 14px 14px 14px 0;
+      }
+    }
+    &-chatfooter {
+      height: 2.8rem;
+      display: flex;
+      box-shadow: 2px -1px 3.5px rgba(0, 0, 0, 0.2);
+      background-color: #dce5fa;
+      border-radius: 0 0 7px 0;
+      position: relative;
+      &-textarea {
+        &-container {
+          height: 100%;
+          width: calc(100% - 3.2rem);
+          position: relative;
+        }
+        max-height: 10rem !important;
+        position: absolute;
+        bottom: 0%;
+        min-height: 100%;
+        width: 100%;
+        background-color: #dce5fa;
+        font-family: inherit;
+        font-size: 1.1rem;
+        padding: 0.7rem 0.8rem;
+        line-height: 1.2rem;
+        border: none;
+        resize: none;
+      }
+      &-sendicon {
+        display: flex;
+        font-size: 1.8rem;
+        width: 3.2rem;
+        color: #1f57dbda;
+        justify-content: center;
+        border-radius: 0 0 7px 0;
+        align-items: center;
+        cursor: pointer;
+        background-color: #dce5fa;
+      }
+    }
+  }
+}
+.invert {
+  transform: rotateX(180deg);
+}
